@@ -12,7 +12,7 @@ import javax.swing.JOptionPane;
  * @author Alumno
  */
 public class LoginCentradoEvolucion extends javax.swing.JFrame {
-
+    int xMouse,yMouse;
     /**
      * Creates new form LoginCentrado
      */
@@ -52,12 +52,28 @@ public class LoginCentradoEvolucion extends javax.swing.JFrame {
         panelFondo.setLayout(new java.awt.GridBagLayout());
 
         panelDesplazar.setBackground(new java.awt.Color(255, 255, 255));
+        panelDesplazar.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                panelDesplazarMouseDragged(evt);
+            }
+        });
+        panelDesplazar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                panelDesplazarMousePressed(evt);
+            }
+        });
 
         xSalir.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         xSalir.setText("X");
         xSalir.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 xSalirMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                xSalirMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                xSalirMouseExited(evt);
             }
         });
 
@@ -221,6 +237,25 @@ public class LoginCentradoEvolucion extends javax.swing.JFrame {
     private void xSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_xSalirMouseClicked
         System.exit(0);
     }//GEN-LAST:event_xSalirMouseClicked
+
+    private void panelDesplazarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelDesplazarMousePressed
+        xMouse=evt.getX();
+        yMouse=evt.getY();        // TODO add your handling code here:
+    }//GEN-LAST:event_panelDesplazarMousePressed
+
+    private void panelDesplazarMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelDesplazarMouseDragged
+       int x=evt.getXOnScreen();
+       int y=evt.getYOnScreen();
+       this.setLocation(x-xMouse,y-yMouse);        // TODO add your handling code here:
+    }//GEN-LAST:event_panelDesplazarMouseDragged
+
+    private void xSalirMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_xSalirMouseEntered
+        xSalir.setForeground(Color.red);
+    }//GEN-LAST:event_xSalirMouseEntered
+
+    private void xSalirMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_xSalirMouseExited
+        xSalir.setForeground(Color.black);
+    }//GEN-LAST:event_xSalirMouseExited
 
     /**
      * @param args the command line arguments
